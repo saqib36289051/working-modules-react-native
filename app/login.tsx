@@ -2,6 +2,7 @@ import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import React, { useEffect } from "react";
 import * as Haptics from "expo-haptics";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import {useRouter } from "expo-router";
 
 type Props = {};
 
@@ -9,10 +10,11 @@ const Login = (props: Props) => {
   const [code, setCode] = React.useState<number[]>([]);
   console.log("🚀 ~ Login ~ code:", code);
   const codeLength = Array(6).fill(0);
+  const router = useRouter();
 
   useEffect(() => {
     if (code.length === 6) {
-      console.log("Code", code.join(""));
+      router.navigate("/home");
     }
   }, [code]);
 

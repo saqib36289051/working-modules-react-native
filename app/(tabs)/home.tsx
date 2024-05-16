@@ -1,11 +1,11 @@
 import { Button, StyleSheet, Text, View } from "react-native";
-import React from "react";
+import React, { useEffect } from "react";
 import { useRouter } from "expo-router";
 
 type Props = {};
-
 const Home = (props: Props) => {
   const router = useRouter();
+ 
   return (
     <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
       <Text>Home</Text>
