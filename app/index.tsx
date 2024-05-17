@@ -1,4 +1,4 @@
-import { Button, StyleSheet, Text, View } from "react-native";
+import { Button, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import React from "react";
 import { Link } from "expo-router";
 import Config from "react-native-config";
@@ -17,32 +17,43 @@ const Dashboard = (props: Props) => {
         gap: 10,
       }}
     >
-      <Link
-        style={{
-          fontWeight: "400",
-          fontSize: 24,
-        }}
-        href={"/home"}
-      >
-        Home
+      <Link href={"/home"} asChild>
+        <TouchableOpacity style={styles.button}>
+          <Text
+            style={{
+              fontWeight: "400",
+              fontSize: 24,
+            }}
+          >
+            Home
+          </Text>
+        </TouchableOpacity>
       </Link>
-      <Link
-        style={{
-          fontWeight: "400",
-          fontSize: 24,
-        }}
-        href={"/detail"}
-      >
-        Detail
+
+      <Link href={"/detail"} asChild>
+        <TouchableOpacity style={styles.button}>
+          <Text
+            style={{
+              fontWeight: "400",
+              fontSize: 24,
+            }}
+          >
+            Detail
+          </Text>
+        </TouchableOpacity>
       </Link>
-      <Link
-        style={{
-          fontWeight: "400",
-          fontSize: 24,
-        }}
-        href={"/tasklist"}
-      >
-        Watermelon DB Testing
+
+      <Link href={"/tasklist"} asChild>
+        <TouchableOpacity style={styles.button}>
+          <Text
+            style={{
+              fontWeight: "400",
+              fontSize: 24,
+            }}
+          >
+            Task List (Water melondb)
+          </Text>
+        </TouchableOpacity>
       </Link>
     </View>
   );
@@ -50,4 +61,11 @@ const Dashboard = (props: Props) => {
 
 export default Dashboard;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  button: {
+    backgroundColor: "lightgray",
+    paddingHorizontal: 16,
+    paddingVertical: 8,
+    borderRadius: 5,
+  },
+});
