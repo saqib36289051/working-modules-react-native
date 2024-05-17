@@ -1,7 +1,6 @@
 import { Button, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import React from "react";
 import { Link } from "expo-router";
-import Config from "react-native-config";
 import { BASE_URL } from "@env";
 
 type Props = {};
