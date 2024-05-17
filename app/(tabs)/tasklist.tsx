@@ -7,8 +7,9 @@ import {
   View,
 } from "react-native";
 import React, { useEffect, useState } from "react";
-import database from "../../db";
+import database, { PostsCollection } from "../../db";
 import TList from "../../components/TaskList";
+import Post from "../../model/Post";
 
 const tasklist = () => {
   const [dbPost, setDBPost] = useState({
@@ -24,7 +25,37 @@ const tasklist = () => {
         post.isPinned = true;
       });
     });
+    setDBPost({
+      title: "",
+      body: "",
+    });
+
   }
+
+  function editPost(post: Post) {
+    setDBPost({
+      title: post.title,
+      body: post.body,
+      id: post.id,
+    });
+  }
+
+  async function updateInDB() {
+    await database.write(async () => {
+      const post = await PostsCollection.find(dbPost.id)
+      await post.update((p) => {
+        p.title = dbPost.title;
+        p.body = dbPost.body;
+      })
+    })
+
+    setDBPost({
+      title: "",
+      body: "",
+    });
+  }
+
+
   return (
     <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
       <TextInput
@@ -40,8 +71,11 @@ const tasklist = () => {
         onChangeText={(text) => setDBPost({ ...dbPost, body: text })}
       />
 
-      <Button title="Create Post" onPress={() => createRecordInDB()} />
-      <TList />
+      <View style={{ flexDirection: "row", justifyContent: "space-between", gap: 16 }}>
+        <Button title="Create Post" onPress={() => createRecordInDB()} />
+        <Button title="Update Post" onPress={() => updateInDB()} />
+      </View>
+      <TList editPost={editPost} />
     </View>
   );
 };
@@ -57,4 +91,12 @@ const styles = StyleSheet.create({
     padding: 4,
     borderRadius: 8,
   },
+  btn: {
+    backgroundColor: "blue",
+    color: "white",
+    padding: 10,
+    borderRadius: 8,
+    width: "80%",
+    textAlign: "center",
+  }
 });

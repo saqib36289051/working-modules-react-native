@@ -1,19 +1,33 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
-import { Stack } from "expo-router";
+import { Tabs as Tb } from "expo-router";
+import { Feather } from "@expo/vector-icons";
 
-type Props = {};
 
-const Tabs = (props: Props) => {
-    // hide the header of the Tabs screen
+const Tabs = () => {
+  // hide the header of the Tabs screen
+  // href: detail ? "/detail" : null
   return (
+    <Tb>
+      <Tb.Screen name="home" options={{
+        title: "Home",
+        tabBarIcon: ({ focused }) => (
+          <Feather name="home" size={24} color={focused ? "black" : "gray"} />
+        ),
+        tabBarActiveTintColor: "black",
+      }} />
+      <Tb.Screen name="tasklist" options={{
+        title: "Task List",
+        tabBarIcon: ({ focused }) => (
+          <Feather name="database" size={24} color={focused ? "black" : "gray"} />
+        ),
+        tabBarActiveTintColor: "black",
+      }} />
 
-    <Stack>
-      <Stack.Screen name="home" options={{ title: "Home" }} />
-      <Stack.Screen name="detail" options={{ title: "Detail" }} />
-    </Stack>
+    </Tb>
   );
 };
+
 
 export default Tabs;
 

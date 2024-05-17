@@ -29,19 +29,6 @@ const Dashboard = (props: Props) => {
         </TouchableOpacity>
       </Link>
 
-      <Link href={"/detail"} asChild>
-        <TouchableOpacity style={styles.button}>
-          <Text
-            style={{
-              fontWeight: "400",
-              fontSize: 24,
-            }}
-          >
-            Detail
-          </Text>
-        </TouchableOpacity>
-      </Link>
-
       <Link href={"/tasklist"} asChild>
         <TouchableOpacity style={styles.button}>
           <Text

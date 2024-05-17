@@ -6,7 +6,7 @@ import { Query } from "@nozbe/watermelondb";
 import Post from "../model/Post";
 import database, { PostsCollection } from "../db";
 
-const TaskList = ({ posts }: { posts: Post[] }) => {
+const TaskList = ({ posts, editPost }: { posts: Post[], editPost: (post: Post) => void }) => {
   return (
     <View
       style={{
@@ -17,7 +17,7 @@ const TaskList = ({ posts }: { posts: Post[] }) => {
         data={posts}
         keyExtractor={(item, index) => index.toString()}
         renderItem={({ item }) => {
-          return <TaskListItem post={item} />;
+          return <TaskListItem post={item} editPost={editPost} />;
         }}
       />
     </View>
